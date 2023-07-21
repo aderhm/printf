@@ -1,1 +1,1 @@
-Printf | C funaction
+#printf
