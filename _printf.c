@@ -21,6 +21,7 @@ int _printf(const char *format, ...)
  */
 int main(void)
 {
+	_printf("Hello, me ");
 	_printf("Hello, world");
 	write(1, "\n", 1);
 	return (0);
