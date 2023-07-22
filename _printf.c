@@ -11,7 +11,6 @@
 int _printf(const char *format, ...)
 {
 	int num_of_printed_chars;
-	char *s, c;
 	va_list args;
 
 	va_start(args, format);
@@ -21,31 +20,29 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (*(format + 1) == 'c')
+			switch (*(format + 1))
 			{
-				c = va_arg(args, int);
-				printchar(c);
-				num_of_printed_chars++;
-			}
-			else if (*(format + 1) == 's')
-			{
-				s = va_arg(args, char *);
-				printstr(s);
-				num_of_printed_chars += _strlen(s);
-			}
-			else if (*(format + 1) == '%')
-			{
-				printchar('%');
-				num_of_printed_chars++;
+				case 'c':
+					handle_char(args, num_of_printed_chars);
+					break;
+				case 's':
+					handle_str(args, num_of_printed_chars);
+					break;
+				case 'd':
+					printstr("%%d is not handeled yet\n");
+					break;
+				case 'i':
+					printstr("%%d is not handeled yet\n");
+					break;
+				default:
+					handle_others(*(format + 1), num_of_printed_chars);
+					break;
 			}
 			format += 2;
 			continue;
 		}
 		else
-		{
-			printchar(*format);
-			num_of_printed_chars++;
-		}
+			handle_others(*format, num_of_printed_chars);
 		format++;
 	}
 
@@ -61,6 +58,12 @@ int _printf(const char *format, ...)
  */
 int main(void)
 {
-	return (_printf("%c, %c, and %c are %s,\nbut %% is a %s.\n",
-	'a', 'b', 'c', "letters", "symbole"));
+	_printf("%c%c, %cc %%\n", 'h', 'e', 'l');
+	_printf("Let's try to printf a simple sentence.\n");
+	_printf("Character:[%c]\n", 'H');
+	_printf("String:[%s]\n", "I am a string !");
+	_printf("Percent:[%%]\n");
+	_printf("Unknown:[%r]\n");
+
+	return (0);
 }
