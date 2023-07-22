@@ -6,8 +6,10 @@
 int _strlen(char *s);
 void printchar(char c);
 void printstr(char *str);
-void handle_char(va_list argptr, int char_counter);
-void handle_str(va_list argptr, int char_counter);
-void handle_others(char other, int char_counter);
+int handle_char(va_list argptr);
+int handle_str(va_list argptr);
+int handle_others(char other);
+
+int _printf(const char *format, ...);
 
 #endif /* MAIN_H */

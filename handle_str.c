@@ -4,15 +4,14 @@
 /**
  * handle_str - gets the parameter of type (char *).
  * @argptr: the list of arguments,
- * @char_counter: counts the printed characters,
  *
- * Return: void.
+ * Return: length of the printed string.
  */
-void handle_str(va_list argptr, int char_counter)
+int handle_str(va_list argptr)
 {
 	char *s;
 
 	s = va_arg(argptr, char *);
 	printstr(s);
-	char_counter++;
+	return (_strlen(s));
 }

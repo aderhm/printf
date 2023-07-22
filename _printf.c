@@ -10,12 +10,12 @@
  */
 int _printf(const char *format, ...)
 {
-	int num_of_printed_chars;
+	int counter, x = 0;
 	va_list args;
 
 	va_start(args, format);
 
-	num_of_printed_chars = 0;
+	counter = 0;
 	while (*format)
 	{
 		if (*format == '%')
@@ -23,47 +23,30 @@ int _printf(const char *format, ...)
 			switch (*(format + 1))
 			{
 				case 'c':
-					handle_char(args, num_of_printed_chars);
+					x = handle_char(args);
 					break;
 				case 's':
-					handle_str(args, num_of_printed_chars);
+					x = handle_str(args);
 					break;
-				case 'd':
-					printstr("%%d is not handeled yet\n");
+				case '%':
+					x = handle_others(*(format + 1));
 					break;
-				case 'i':
-					printstr("%%d is not handeled yet\n");
+				case '\0':
 					break;
 				default:
-					handle_others(*(format + 1), num_of_printed_chars);
+					x = handle_others(*format);
+					x += handle_others(*(format + 1));
 					break;
 			}
 			format += 2;
+			counter += x;
 			continue;
 		}
 		else
-			handle_others(*format, num_of_printed_chars);
+			x = handle_others(*format);
+		counter += x;
 		format++;
 	}
-
 	va_end(args);
-
-	return (num_of_printed_chars);
-}
-
-/**
- * main - check _printf.
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	_printf("%c%c, %cc %%\n", 'h', 'e', 'l');
-	_printf("Let's try to printf a simple sentence.\n");
-	_printf("Character:[%c]\n", 'H');
-	_printf("String:[%s]\n", "I am a string !");
-	_printf("Percent:[%%]\n");
-	_printf("Unknown:[%r]\n");
-
-	return (0);
+	return (counter);
 }
