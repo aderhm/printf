@@ -1,12 +1,11 @@
 #include <unistd.h>
 #include "main.h"
 
-
 /**
  * printstr - prints the string str to stdout.
  * @str: The string to print
  *
- * Return: the number of characters printed.
+ * Return: void.
  */
 void printstr(char *str)
 {
