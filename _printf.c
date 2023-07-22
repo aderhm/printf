@@ -10,26 +10,48 @@
  */
 int _printf(const char *format, ...)
 {
+	int num_of_printed_chars;
 	char *s, c;
 	va_list args;
 
 	va_start(args, format);
 
-	if (format[1] == 's')
+	num_of_printed_chars = 0;
+	while (*format)
 	{
-		s = va_arg(args, char *);
-		printstr(s);
-	}
-	else if (format[1] == 'c')
-	{
-		c = va_arg(args, int);
-		printchar(c);
+		if (*format == '%')
+		{
+			if (*(format + 1) == 'c')
+			{
+				c = va_arg(args, int);
+				printchar(c);
+				num_of_printed_chars++;
+			}
+			else if (*(format + 1) == 's')
+			{
+				s = va_arg(args, char *);
+				printstr(s);
+				num_of_printed_chars += _strlen(s);
+			}
+			else if (*(format + 1) == '%')
+			{
+				printchar('%');
+				num_of_printed_chars++;
+			}
+			format += 2;
+			continue;
+		}
+		else
+		{
+			printchar(*format);
+			num_of_printed_chars++;
+		}
+		format++;
 	}
 
 	va_end(args);
 
-	return (1);
-
+	return (num_of_printed_chars);
 }
 
 /**
@@ -39,7 +61,6 @@ int _printf(const char *format, ...)
  */
 int main(void)
 {
-	_printf("%s", "Helloooo!");
-	write(1, "\n", 1);
-	return (0);
+	return (_printf("%c, %c, and %c are %s,\nbut %% is a %s.\n",
+	'a', 'b', 'c', "letters", "symbole"));
 }
