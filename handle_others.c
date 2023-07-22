@@ -3,12 +3,11 @@
 /**
  * handle_others - prints unknown specifiers and normal chars.
  * @other: the char to print,
- * @char_counter: counts the printed characters,
  *
- * Return: void.
+ * Return: 1.
  */
-void handle_others(char other, int char_counter)
+int handle_others(char other)
 {
 	printchar(other);
-	char_counter++;
+	return (1);
 }

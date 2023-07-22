@@ -4,15 +4,14 @@
 /**
  * handle_char - gets the parameter of type char.
  * @argptr: the list of arguments,
- * @char_counter: counts the printed characters,
  *
- * Return: void.
+ * Return: 1.
  */
-void handle_char(va_list argptr, int char_counter)
+int handle_char(va_list argptr)
 {
 	char c;
 
 	c = va_arg(argptr, int);
 	printchar(c);
-	char_counter++;
+	return (1);
 }
