@@ -12,16 +12,12 @@
  */
 int _printf(const char *format, ...)
 {
-	sp_t specifiers[] = {
-		{'c', handle_char},
-		{'s', handle_str},
-		{'%', handle_percent}
-	};
+	sp_t specifiers[] = { {'c', handle_char},
+		{'s', handle_str}, {'%', handle_percent} };
 	int i, counter = 0;
 	va_list args;
 
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format == '%')
@@ -31,7 +27,10 @@ int _printf(const char *format, ...)
 			{
 				if (specifiers[i].specifier == *(format + 1))
 				{
-					specifiers[i].f(args);
+					if (i == 1)
+						counter += call_back_handle_str(args);
+					else
+						specifiers[i].f(args);
 					format++;
 					break;
 				}
@@ -43,6 +42,7 @@ int _printf(const char *format, ...)
 				if (i == -1)
 					return (-1);
 				format++;
+				counter++;
 			}
 		}
 		else

@@ -12,6 +12,12 @@ int handle_str(va_list argptr)
 	char *s;
 
 	s = va_arg(argptr, char *);
+	if (!s)
+	{
+		printstr("(null)");
+		return (6);
+	}
+
 	printstr(s);
 	return (_strlen(s));
 }

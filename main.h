@@ -20,6 +20,7 @@ void printchar(char c);
 void printstr(char *str);
 int handle_char(va_list argptr);
 int handle_str(va_list argptr);
+int call_back_handle_str(va_list argptr);
 int handle_percent(va_list argptr);
 int handle_default(char c, char cc);
 int handle_others(char other);
