@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
 
 #define SIZE_OF_SPECIFIERS 3
@@ -13,10 +12,13 @@
  */
 int _printf(const char *format, ...)
 {
-	sp_t specifiers[] = { {'c', handle_char},
+	sp_t sp[] = { {'c', handle_char},
 		{'s', handle_str}, {'%', handle_percent} };
 	int i, n, counter = 0;
 	va_list args;
+
+	if (!format)
+		return (-1);
 
 	va_start(args, format);
 	while (*format)
@@ -26,12 +28,9 @@ int _printf(const char *format, ...)
 			i = 0;
 			while (i < SIZE_OF_SPECIFIERS)
 			{
-				if (specifiers[i].specifier == *(format + 1))
+				if (sp[i].s == *(format + 1))
 				{
-					if (i == 1)
-						counter += call_back_handle_str(args);
-					else
-						specifiers[i].f(args);
+					(i == 1) ? counter += sp[1].f(args) - 1 : sp[i].f(args);
 					format++;
 					break;
 				}
@@ -39,7 +38,7 @@ int _printf(const char *format, ...)
 			}
 			if (i == SIZE_OF_SPECIFIERS)
 			{
-				n = _default(*format, *(format + 1), format, args);
+				n = handle_default(*format, *(format + 1), format, args);
 				if (n == -1)
 					return (-1);
 				format = increment_format(n, format);
