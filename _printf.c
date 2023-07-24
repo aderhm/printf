@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-			handle_others(*format);
+			write(1, format, 1);
 		format++;
 		counter++;
 	}
