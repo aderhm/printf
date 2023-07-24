@@ -16,14 +16,24 @@ typedef struct sp
 } sp_t;
 
 int _strlen(char *s);
+
 void printchar(char c);
 void printstr(char *str);
+
 int handle_char(va_list argptr);
 int handle_str(va_list argptr);
+
 int call_back_handle_str(va_list argptr);
+
 int handle_percent(va_list argptr);
-int handle_default(char c, char cc);
+
+int handle_default(char c, char cc, const char *format, va_list argptr);
+
 int handle_others(char other);
+
+int _default(char f, char ff, const char *format, va_list argptr);
+int update_counter(int n, int ctr);
+const char *increment_format(int n, const char *format);
 
 int _printf(const char *format, ...);
 
