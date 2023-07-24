@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdarg.h>
 #include "main.h"
 
@@ -35,7 +36,7 @@ int handle_default(char c, char cc, const char *format, va_list argptr)
 		}
 	}
 
-	handle_others(c);
-	handle_others(cc);
+	write(1, &c, 1);
+	write(1, &cc, 1);
 	return (2);
 }

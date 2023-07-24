@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <stdarg.h>
 #include "main.h"
 
@@ -12,6 +13,6 @@ int handle_char(va_list argptr)
 	char c;
 
 	c = va_arg(argptr, int);
-	printchar(c);
+	write(1, &c, 1);
 	return (1);
 }

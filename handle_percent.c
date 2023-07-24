@@ -1,6 +1,6 @@
+#include <unistd.h>
 #include <stdarg.h>
 #include "main.h"
-#include <stdio.h>
 
 /**
  * handle_percent - prints %.
@@ -12,6 +12,6 @@ int handle_percent(va_list argptr)
 {
 	(void)argptr;
 
-	printchar('%');
+	write(1, "%", 1);
 	return (1);
 }
