@@ -11,13 +11,9 @@ int update_counter(int n, int ctr)
 		return (-1);
 
 	if (n == 2)
-	{
 		ctr++;
-	}
 	else
-	{
 		ctr += n - 1;
-	}
 
 	return (ctr);
 }
