@@ -11,12 +11,12 @@ int int_to_string(int num, char *num_str)
 {
 	int i, len = 0;
 	int copied = num;
-	
+
 	do {
 		len++;
 		copied /= 10;
 	} while (copied != 0);
-	
+
 	if (num < 0)
 	{
 		len += 1;
@@ -29,7 +29,7 @@ int int_to_string(int num, char *num_str)
 	}
 	else if (num > 0)
 	{
-		for (i = len -1; i >= 0; i--)
+		for (i = len - 1; i >= 0; i--)
 		{
 			num_str[i] = '0' + (num % 10);
 			num /= 10;
