@@ -1,4 +1,4 @@
-
+#include <limits.h>
 /**
  * int_to_string - convert an int to string
  *
