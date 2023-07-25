@@ -12,14 +12,13 @@
  */
 int _printf(const char *format, ...)
 {
-	sp_t sp[] = { {'c', handle_char},
-		{'s', handle_str}, {'%', handle_percent}, {'d', handle_integers_decimal}, {'i', handle_integers_decimal} };
+	sp_t sp[] = { {'c', handle_char}, {'s', handle_str}, {'%', handle_percent},
+		{'d', handle_integers_decimal}, {'i', handle_integers_decimal} };
 	int i, n, counter = 0;
 	va_list args;
 
 	if (!format)
 		return (-1);
-
 	va_start(args, format);
 	while (*format)
 	{
@@ -30,7 +29,8 @@ int _printf(const char *format, ...)
 			{
 				if (sp[i].s == *(format + 1))
 				{
-					(i == 1) ? counter += sp[1].f(args) - 1 : sp[i].f(args);
+					(i == 1 || i == 3 || i == 4) ?
+						counter += sp[i].f(args) - 1 : sp[i].f(args);
 					format++;
 					break;
 				}
