@@ -23,9 +23,11 @@ int handle_char(va_list argptr);
 int handle_str(va_list argptr);
 int handle_percent(va_list argptr);
 int handle_default(char c, char cc, const char *format, va_list argptr);
+int handle_integers_decimal(va_list argptr);
 
 int update_counter(int n, int ctr);
 const char *increment_format(int n, const char *format);
+int int_to_string(int num, char *num_str);
 
 int _printf(const char *format, ...);
 
