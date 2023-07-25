@@ -23,5 +23,5 @@ int handle_integers_decimal(va_list argptr)
 	{
 		write(1, "0", 1);
 	}
-	return (1);
+	return (length);
 }

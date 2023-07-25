@@ -1,4 +1,3 @@
-#include <limits.h>
 /**
  * int_to_string - convert an int to string
  *
@@ -12,26 +11,37 @@ int int_to_string(int num, char *num_str)
 {
 	int i, len = 0;
 	int copied = num;
-	int min = 0;
-
-	if (num < 0)
-	{
-		num_str[0] = '-';
-		len++;
-		copied = -num;
-		num = -num;
-		min = 1;
-	}
-	while (copied != 0)
-	{
+	
+	do {
 		len++;
 		copied /= 10;
-	}
-
-	for (i = len - 1; i >= min; i--)
+	} while (copied != 0);
+	
+	if (num < 0)
 	{
-		num_str[i] = '0' + (num % 10);
-		num /= 10;
+		len += 1;
+		for (i = len - 1; i > 0; i--)
+		{
+			num_str[i] = '0' - (num % 10);
+			num /= 10;
+		}
+		num_str[i] = '-';
+	}
+	else if (num > 0)
+	{
+		for (i = len -1; i >= 0; i--)
+		{
+			num_str[i] = '0' + (num % 10);
+			num /= 10;
+		}
+	}
+	else
+	{
+		for (i = len - 1; i >= 0; i--)
+		{
+			num_str[i] = '0' + (num % 10);
+			num /= 10;
+		}
 	}
 
 	num_str[len] = '\0';
