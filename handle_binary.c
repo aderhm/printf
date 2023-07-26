@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdarg.h>
 #include "main.h"
 
@@ -13,13 +12,11 @@ int handle_binary(va_list argptr)
 {
 	unsigned int n;
 	int i, len;
-	char *binary;
+	char binary[50];
 
 	n = va_arg(argptr, unsigned int);
 	if (n == 0)
 		return (write(1, "0", 1));
-
-	binary = malloc(sizeof(binary));
 
 	i = 0;
 	while (n)
@@ -38,8 +35,6 @@ int handle_binary(va_list argptr)
 	}
 
 	len = _strlen(binary);
-
-	free(binary);
 
 	return (len);
 }
