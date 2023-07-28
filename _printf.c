@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include "main.h"
 
-#define SIZE_OF_SPECIFIERS 6
+#define SIZE_OF_SPECIFIERS 7
 
 /**
  * _printf - produces output according to a format.
@@ -12,8 +12,7 @@
  */
 int _printf(const char *format, ...)
 {
-	sp_t sp[] = { {'c', handle_char}, {'s', handle_str}, {'%', handle_percent},
-	{'d', handle_numbers}, {'i', handle_numbers}, {'b', handle_binary} };
+	sp_t sp[SIZE_OF_SPECIFIERS];
 	int i, n, counter = 0;
 	va_list args;
 
@@ -27,9 +26,10 @@ int _printf(const char *format, ...)
 			i = 0;
 			while (i < SIZE_OF_SPECIFIERS)
 			{
+				sp[i] = get_specifiers(i);
 				if (sp[i].s == *(format + 1))
 				{
-					(i == 1 || i == 3 || i == 4 || i == 5) ?
+					(i == 1 || i == 3 || i == 4 || i == 5 || i == 6) ?
 						counter += sp[i].f(args) - 1 : sp[i].f(args);
 					format++;
 					break;

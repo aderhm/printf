@@ -15,6 +15,7 @@ typedef struct sp
 	int (*f)(va_list);
 } sp_t;
 
+sp_t get_specifiers(int);
 int _strlen(char *s);
 
 void printstr(char *str);
@@ -25,6 +26,7 @@ int handle_percent(va_list argptr);
 int handle_default(char c, char cc, const char *format, va_list argptr);
 int handle_numbers(va_list argptr);
 int handle_binary(va_list argptr);
+int handle_rs(va_list argptr);
 
 int update_counter(int n, int ctr);
 const char *increment_format(int n, const char *format);
