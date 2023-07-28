@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include "main.h"
 
-#define SIZE_OF_SPECIFIERS 7
+#define SIZE_OF_SPECIFIERS 8
 
 /**
  * _printf - produces output according to a format.
@@ -29,8 +29,8 @@ int _printf(const char *format, ...)
 				sp[i] = get_specifiers(i);
 				if (sp[i].s == *(format + 1))
 				{
-					(i == 1 || i == 3 || i == 4 || i == 5 || i == 6) ?
-						counter += sp[i].f(args) - 1 : sp[i].f(args);
+					(i == 1 || i == 3 || i == 4 || i == 5 || i == 6 || i == 7)
+						? counter += sp[i].f(args) - 1 : sp[i].f(args);
 					format++;
 					break;
 				}

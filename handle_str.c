@@ -29,7 +29,6 @@ int handle_str(va_list argptr)
  *
  * Return: length of the printed string.
  */
-
 int handle_rs(va_list argptr)
 {
 	int length = 0;
